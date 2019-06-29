@@ -1,11 +1,9 @@
 # HackEye-Hackathon
 
 
-## To run server :
+## To build and run server :
  
-* `cd Server`
-* `go build -o main -v ./cmd/... `
-* `./main` 
+* `./build.sh`
 
 ## Scripts
 
