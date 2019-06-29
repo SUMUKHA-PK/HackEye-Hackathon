@@ -8,9 +8,7 @@ import (
 	"net/http"
 
 	"github.com/SUMUKHA-PK/HackEye-Hackathon/Server/database"
-
 	"github.com/SUMUKHA-PK/HackEye-Hackathon/Server/responses"
-
 	"github.com/SUMUKHA-PK/HackEye-Hackathon/Server/util"
 )
 
@@ -36,9 +34,13 @@ func AddItemsToCart(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Println(newReq)
+	if len(newReq.ItemIDList) != len(newReq.ItemList) {
+		http.Error(w, "Size of item list and item ID list do not match!", http.StatusInternalServerError)
+		return
+	}
 
 	//add the data to the DB
-	err := database.AddGroceryListToDatabase(newReq)
+	err = database.AddGroceryListToDatabase(newReq)
 	if err != nil {
 		log.Printf("Can't add to DB in routing/groceries.go/AddItemsToCart")
 		log.Println(err)
