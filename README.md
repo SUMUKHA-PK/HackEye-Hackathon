@@ -3,7 +3,8 @@
 
 ## To build and run server :
  
-* `./build.sh`
+* Enter the server's directory : ` cd Server`
+* Build and run the executable : `./build.sh`
 
 ## Scripts
 
