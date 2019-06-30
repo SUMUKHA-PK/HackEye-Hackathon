@@ -1,6 +1,10 @@
 # HackEye-Hackathon
 
 
+# Pre-requisites :
+* A PostgreSQL database running on preferably docker.
+* DB containing a table named `groceries` .
+
 ## To build and run server :
  
 * Enter the server's directory : ` cd Server`
