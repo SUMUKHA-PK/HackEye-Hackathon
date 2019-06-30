@@ -6,6 +6,11 @@
 * Enter the server's directory : ` cd Server`
 * Build and run the executable : `./build.sh`
 
+## To build server on docker :
+
+* Run `docker build -t wmgroceries .` 
+* Run `docker run -d -p 8008:8008 wmgroceries:latest`
+
 ## Scripts
 
 ### Cleaning Script
