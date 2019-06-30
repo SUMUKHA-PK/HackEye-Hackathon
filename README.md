@@ -1,7 +1,7 @@
 # HackEye-Hackathon
 
 
-# Pre-requisites :
+## Pre-requisites :
 * A PostgreSQL database running on preferably docker.
 * DB containing a table named `groceries` .
 
