@@ -66,6 +66,7 @@ if __name__ == "__main__":
         quit()
     filepath = sys.argv[1]
     savefolder = sys.argv[2]
+    print(filepath, savefolder)
     if(os.path.exists(filepath) and os.path.exists(savefolder)):
         get_items(filepath,savefolder)
     else:
