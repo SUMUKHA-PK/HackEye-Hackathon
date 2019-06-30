@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 
 	"github.com/SUMUKHA-PK/HackEye-Hackathon/Server/database"
 	"github.com/SUMUKHA-PK/HackEye-Hackathon/Server/responses"
@@ -59,4 +60,30 @@ func AddItemsToCart(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write([]byte(outJSON))
+}
+
+// CheckOutAtHome handles the checkouts that happen at home
+func CheckOutAtHome(w http.ResponseWriter, r *http.Request) {
+	url := "http://localhost:8008/addItemsToCart"
+
+	payload := strings.NewReader("{\"UserID\":\"sumukha\",\"ItemList\":[\"apple\",\"banana\",\"mango\"],\"ItemIDList\":[\"1a\",\"1b\",\"3d\"]}")
+
+	req, _ := http.NewRequest("POST", url, payload)
+
+	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("cache-control", "no-cache")
+	req.Header.Add("Postman-Token", "50e95c17-7078-4bb8-8c53-21ccaca1e04a")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+}
+
+// CheckOutAtStore handles the checkouts that happen at home
+func CheckOutAtStore(w http.ResponseWriter, r *http.Request) {
+
 }
