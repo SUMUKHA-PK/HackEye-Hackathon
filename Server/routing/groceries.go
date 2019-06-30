@@ -64,23 +64,31 @@ func AddItemsToCart(w http.ResponseWriter, r *http.Request) {
 
 // CheckOutAtHome handles the checkouts that happen at home
 func CheckOutAtHome(w http.ResponseWriter, r *http.Request) {
-	url := "http://localhost:8008/addItemsToCart"
+	// The static IP of the ML server
+	url := "http://localhost:52525/pasteData"
 
-	payload := strings.NewReader("{\"UserID\":\"sumukha\",\"ItemList\":[\"apple\",\"banana\",\"mango\"],\"ItemIDList\":[\"1a\",\"1b\",\"3d\"]}")
+	payload := strings.NewReader("{ \"ExpirationTime\":\"20\",\"PasteContent\":\"e eno sssassa \", \"CustomURL\": \"soonarmoonar\"}")
 
 	req, _ := http.NewRequest("POST", url, payload)
 
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("cache-control", "no-cache")
-	req.Header.Add("Postman-Token", "50e95c17-7078-4bb8-8c53-21ccaca1e04a")
+	// req.Header.Add("Postman-Token", "50e95c17-7078-4bb8-8c53-21ccaca1e04a")
 
-	res, _ := http.DefaultClient.Do(req)
+	res, err := http.DefaultClient.Do(req)
+	if err != nil {
+		log.Printf("Error in recieving data from ML server in routing/groceries.go/AddItemsToCart")
+		log.Println(err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
 	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
 
-	fmt.Println(res)
 	fmt.Println(string(body))
+	// w.Header().Set("Content-Type", "application/json")
+	// w.Write([]byte(outJSON))
 }
 
 // CheckOutAtStore handles the checkouts that happen at home

@@ -6,3 +6,14 @@ type AddToCartReq struct {
 	ItemList   []string
 	ItemIDList []string
 }
+
+// StoreCheckoutReq is the /store/checkout req
+type StoreCheckoutReq struct {
+	UserID   string
+	ItemList []string
+}
+
+type HomeCheckout struct {
+	UserID   string
+	ItemList []string
+}
