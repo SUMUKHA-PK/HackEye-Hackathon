@@ -11,7 +11,7 @@ import (
 // CreateTables returns a DB pointer after creating necessary tables if they dont exist
 func CreateTables() (*sql.DB, error) {
 	//                                                                                --docker pgsql's IP and internal port
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+"password=%s dbname=%s sslmode=disable", "172.17.0.3", 5432, "postgres", "", "groceries")
+	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+"password=%s dbname=%s sslmode=disable", "wmgrdb.postgres.database.azure.com", 5432, "wmgradmin@wmgrdb", "Welcome@1", "groceries")
 	db, err := sql.Open("postgres", psqlInfo)
 	if err != nil {
 		return db, err

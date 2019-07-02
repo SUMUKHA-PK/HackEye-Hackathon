@@ -62,6 +62,57 @@ func AddItemsToCart(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(outJSON))
 }
 
+// GetItemsFromCart retrieves items from the DB
+func GetItemsFromCart(w http.ResponseWriter, r *http.Request) {
+	// get data from the request
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		log.Printf("Bad request in routing/groceries.go/GetItemsFromCart")
+		log.Println(err)
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	// Obtain the JSON data in a struct
+	var newReq util.GetCartReq
+	err = json.Unmarshal(body, &newReq)
+	if err != nil {
+		log.Printf("Coudn't Unmarshal data in routing/groceries.go/GetItemsFromCart")
+		log.Println(err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Println(newReq)
+
+	data, err := database.GetDataFromDB(newReq.UserID)
+	if err != nil {
+		log.Printf("Coudn't get cart data from DB in routing/groceries.go/GetItemsFromCart")
+		log.Println(err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	var cartData util.GetCartRes
+	for i := range data {
+		cartData.ItemList = append(cartData.ItemList, data[i].Item)
+		cartData.ItemIDList = append(cartData.ItemIDList, data[i].ItemID)
+	}
+
+	outData := &responses.CartDataResponse{200, "Successfully obtained cart data", cartData}
+	outJSON, err := json.Marshal(outData)
+	if err != nil {
+		log.Printf("Can't Marshall to JSON in routing/groceries.go/AddItemsToCart")
+		log.Println(err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write([]byte(outJSON))
+
+}
+
 // CheckOutAtHome handles the checkouts that happen at home
 func CheckOutAtHome(w http.ResponseWriter, r *http.Request) {
 	// The static IP of the ML server
