@@ -19,7 +19,7 @@
 
 ### Cleaning Script
 - Download [dataset](https://www.kaggle.com/datafiniti/food-ingredient-lists/downloads/ingredients%20v1.csv/1)
-- `python3 <path to csv file> <directory to store resultant files>`
+- `python3 get_items.py <path to csv file> <directory to store resultant files>`
 -  example <br> 
-  `python3 data/ingredients.csv data/`
-- <b>NEED pandas library to run</b>
+  `python3 get_items.py data/ingredients.csv data/`
+- <b>NEEDS pandas library to run</b>
