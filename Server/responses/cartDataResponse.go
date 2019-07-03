@@ -8,5 +8,5 @@ import (
 type CartDataResponse struct {
 	StatusCode     int
 	SuccessMessage string
-	CartData       util.GetCartRes
+	CartData       util.MLPostRes
 }
