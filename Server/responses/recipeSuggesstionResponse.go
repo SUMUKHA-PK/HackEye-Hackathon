@@ -4,5 +4,6 @@ package responses
 type RecipeSuggesstionResponse struct {
 	StatusCode     int
 	SuccessMessage string
-	Item           string
+	FoodItem       string
+	Items          []string
 }

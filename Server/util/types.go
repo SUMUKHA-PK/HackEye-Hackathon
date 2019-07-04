@@ -165,3 +165,8 @@ type ImageRecognitionRes struct {
 	Created     string
 	Predictions []Prediction
 }
+
+// ImageRecCartRes is the hasher
+type ImageRecCartRes struct {
+	HashItems map[string][]string
+}

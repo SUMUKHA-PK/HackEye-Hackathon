@@ -13,6 +13,7 @@ func AddGroceryListToDatabase(data util.AddToCartReq) error {
 	if err != nil {
 		return err
 	}
+	fmt.Println(data)
 
 	for i := range data.ItemList {
 		query := "INSERT INTO cart VALUES ('" +

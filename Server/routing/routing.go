@@ -20,6 +20,6 @@ func SetupRouting(r mux.Router) mux.Router {
 
 /*
 1. Add intermediate recipe thing
-2. store/checkut
+2. store/checkout
 3.
 */
