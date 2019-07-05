@@ -12,7 +12,7 @@
 
 ## To build server on docker :
 
-* Run `docker build -t wmgroceries .` 
+* Run `docker build -t wmgroceries .` OR `docker pull peekay46/wmgroceries:v1.0` 
 * Run `docker run -d -p 8008:8008 wmgroceries:latest`
 
 ## Scripts
